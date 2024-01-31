@@ -1,4 +1,4 @@
-# Dissolve Dapp
+# Dissolve Social Network Dapp
 
 ## Project Description: Dissolve DApp
 
