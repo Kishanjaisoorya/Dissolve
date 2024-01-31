@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decentralized Social Media App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: white;
+        }
+
+        .container {
+            width: 320px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-footer {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .form-footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="registrationForm" class="form">
+            <h2>Register</h2>
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="age" placeholder="Age" required>
+            <input type="text" id="dob" placeholder="Date of Birth" required>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button id="registerBtn" type="submit">Register</button>
+            <div class="form-footer">
+                <span>Already have an account? <a href="#" id="loginLink">Login</a></span>
+            </div>
+        </div>
+
+        <div id="loginForm" class="form hidden">
+            <h2>Login</h2>
+            <input type="text" id="loginUsername" placeholder="Username" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button id="loginBtn" type="submit">Login</button>
+            <div class="form-footer">
+                <span>Forgot your password? <a href="#" id="forgotPasswordLink">Reset</a></span>
+            </div>
+        </div>
+
+        <div id="resetPasswordForm" class="form hidden">
+            <h2>Reset Password</h2>
+            <input type="text" id="resetEmail" placeholder="Email" required>
+            <button id="resetBtn" type="submit">Reset</button>
+            <div class="form-footer">
+                <span>Remembered your password? <a href="#" id="backToLoginLink">Login</a></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Constants for form elements
+        const registrationForm = document.getElementById('registrationForm');
+        const loginForm = document.getElementById('loginForm');
+        const resetPasswordForm = document.getElementById('resetPasswordForm');
+        const loginLink = document.getElementById('loginLink');
+        const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+        const backToLoginLink = document.getElementById('backToLoginLink');
+
+        // Function to toggle between registration, login, and reset password forms
+        function toggleForms(formToShow) {
+            registrationForm.classList.add('hidden');
+            loginForm.classList.add('hidden');
+            resetPasswordForm.classList.add('hidden');
+
+            formToShow.classList.remove('hidden');
+        }
+
+        // Event listeners for login, registration, and password reset links
+        loginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleForms(loginForm);
+        });
+
+        forgotPasswordLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleForms(resetPasswordForm);
+        });
+
+        backToLoginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleForms(loginForm);
+        });
+
+        // Event listener for registration form submission
+        document.getElementById('registerBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            // Retrieve values from registration form fields
+            let name = document.getElementById('name').value;
+            let age = document.getElementById('age').value;
+            let dob = document.getElementById('dob').value;
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            // You can handle form submission logic here, e.g., send data to server for registration
+            console.log('Registration submitted with:', name, age, dob, username, password);
+
+            // Redirect to home page after registration
+            window.location.href = 'home.html'; // Adjust the URL as needed
+        });
+
+        // Event listener for login form submission
+        document.getElementById('loginBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            // Retrieve values from login form fields
+            let username = document.getElementById('loginUsername').value;
+            let password = document.getElementById('loginPassword').value;
+            // You can handle login logic here, e.g., send data to server for authentication
+            console.log('Login submitted with:', username, password);
+
+            // Redirect to home page after login
+            window.location.href = 'home.html'; // Adjust the URL as needed
+        });
+
+        // Event listener for password reset form submission
+        document.getElementById('resetBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            // Retrieve values from reset password form fields
+            let email = document.getElementById('resetEmail').value;
+            // You can handle password reset logic here, e.g., send reset link to provided email
+            console.log('Password reset requested for:', email);
+        });
+    </script>
+</body>
+</html>

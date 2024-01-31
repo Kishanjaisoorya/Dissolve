@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decentralized Social Media Platform - Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Add your custom CSS styles here */
+        /* Customize as per your branding and design requirements */
+        body {
+            background-color: #000;
+            color: #fff;
+            padding-top: 70px; /* Adjusting for fixed navbar */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .navbar {
+            background-color: #343a40;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-brand, .navbar-nav .nav-link, #loginButton {
+            color: #fff !important;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 50px 0;
+        }
+
+        .container h2 {
+            color: #fff;
+        }
+
+        .post-form {
+            margin-bottom: 20px;
+            display: none; /* Initially hidden */
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .btn-create-post {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-create-post:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Profile Details Styles */
+        #profileDetails {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+        }
+
+        /* Footer Styles */
+        .footer-section {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            margin-top: auto; /* Push the footer to the bottom */
+            width: 100%;
+        }
+
+        .footer-section p {
+            margin-bottom: 5px;
+        }
+
+        .footer-section a {
+            color: #fff;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="#">Your Platform Logo</a>
+            <div class="navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <!-- Profile Link with Icon -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user mr-2"></i>Profile</a>
+                    </li>
+                </ul>
+                <button id="loginButton" class="btn btn-primary">Login</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <section class="main-content">
+        <div class="container">
+            <h2>Welcome to Your Decentralized Social Media Platform</h2>
+            <button id="togglePostForm" class="btn btn-create-post">Create Post</button>
+            <div class="post-form">
+                <textarea id="postContent" placeholder="Write your post..."></textarea>
+                <input type="file" id="mediaInput" accept="image/*, video/*">
+                <button id="postButton" class="btn btn-primary">Post</button>
+            </div>
+            <!-- Display posts here -->
+            <div id="posts">
+                <!-- Posts will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Details Section -->
+    <section id="profileDetails" class="container">
+        <h2>Your Profile Details</h2>
+        <!-- Add your profile details elements here -->
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+        <div class="container text-center">
+            <p>Contact Us: contact@yourplatform.com</p>
+            <p><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+            <p>&copy; 2024 Your Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Login Button, Post Creation, and Profile Details -->
+    <script>
+        document.getElementById("loginButton").addEventListener("click", function() {
+            // Redirect to the login page
+            window.location.href = "login.html"; // Adjust this URL based on your login page path
+        });
+
+        document.getElementById("togglePostForm").addEventListener("click", function() {
+            // Toggle the visibility of the post form
+            var postForm = document.querySelector(".post-form");
+            if (postForm.style.display === "none") {
+                postForm.style.display = "block";
+            } else {
+                postForm.style.display = "none";
+            }
+        });
+
+        document.getElementById("postButton").addEventListener("click", function() {
+            // Get post content
+            var postContent = document.getElementById("postContent").value;
+            // Get media file (if any)
+            var mediaFile = document.getElementById("mediaInput").files[0];
+            
+            // If there's no post content or media file, don't proceed
+            if (!postContent && !mediaFile) {
+                alert("Please enter post content or upload media file.");
+                return;
+            }
+
+            // Here you can handle the posting process, such as sending the data to the blockchain
+            console.log("Posting content:", postContent);
+            console.log("Media file:", mediaFile);
+        });
+
+        document.querySelector('.nav-link').addEventListener('click', function() {
+            // Toggle the visibility of the profile details section
+            var profileDetails = document.getElementById('profileDetails');
+            if (profileDetails.style.display === 'none') {
+                profileDetails.style.display = 'block';
+            } else {
+                profileDetails.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
